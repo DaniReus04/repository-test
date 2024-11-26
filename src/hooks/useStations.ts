@@ -5,7 +5,7 @@ import IStation from '../interfaces/station';
 const useStations = () => {
   const [stations, setStations] = useState<IStation[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [syncError, setSyncError] = useState<string>('Failed to fetch');
+  const [syncError, setSyncError] = useState<string>('');
 
   const stationsSync = async () => {
     setLoading(true);

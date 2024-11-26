@@ -3,62 +3,62 @@ import { IWasteMaterials } from '../interfaces/wasteMaterials';
 const mockWasteMaterials: IWasteMaterials[] = [
   {
     id: 1,
-    name: 'glass',
+    name: 'Glass',
     phosphorIcon: 'BeerBottle',
   },
   {
     id: 2,
-    name: 'rubber',
+    name: 'Rubber Waste',
     phosphorIcon: 'Tire',
   },
   {
     id: 3,
-    name: 'organic',
+    name: 'Organic',
     phosphorIcon: 'AppleLogo',
   },
   {
     id: 4,
-    name: 'eletricAndEletronic',
+    name: 'Electronics',
     phosphorIcon: 'DesktopTower',
   },
   {
     id: 5,
-    name: 'chemicals',
+    name: 'Chemicals',
     phosphorIcon: 'Biohazard',
   },
   {
     id: 6,
-    name: 'paper',
+    name: 'Paper',
     phosphorIcon: 'Scroll',
   },
   {
     id: 7,
-    name: 'wood',
+    name: 'Wood',
     phosphorIcon: 'Tree',
   },
   {
     id: 8,
-    name: 'tissue',
-    phosphorIcon: 'Shirt',
+    name: 'Cloath',
+    phosphorIcon: 'TShirt',
   },
   {
     id: 9,
-    name: 'plastic',
+    name: 'Plastic',
     phosphorIcon: 'SprayBottle',
   },
   {
     id: 10,
-    name: 'metal',
+    name: 'Metals',
     phosphorIcon: 'BriefcaseMetal',
   },
   {
     id: 11,
-    name: 'constructionAndDemolition',
+    name: 'Construction',
     phosphorIcon: 'House',
   },
   {
     id: 12,
-    name: 'scrap',
+    name: 'General Scrap',
     phosphorIcon: 'Recycle',
   },
 ];
