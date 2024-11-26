@@ -1,4 +1,10 @@
 import Slider from '@mui/material/Slider';
+import IStation from '../interfaces/station';
+import { useMemo } from 'react';
+
+interface IStationProps {
+  station: IStation
+};
 
 const marks = [
   {
@@ -27,12 +33,16 @@ const marks = [
   },
 ];
 
-function Station() {
+function Station({ station }: IStationProps) {
+  const percentage = useMemo(() => {
+    return (station.volume / station.capacity) * 100;
+  }, [station.volume, station.capacity]);
+
   return (
     <Slider
       aria-label="Always visible"
-      defaultValue={0}
-      step={10}
+      defaultValue={percentage}
+      draggable={false}
       marks={marks}
     />
   );

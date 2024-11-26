@@ -1,6 +1,6 @@
-import { IWasteMaterials } from '../interfaces/wasteMaterials';
+import { IWasteMaterial } from '../interfaces/wasteMaterials';
 
-const mockWasteMaterials: IWasteMaterials[] = [
+const mockWasteMaterials: IWasteMaterial[] = [
   {
     id: 1,
     name: 'Glass',

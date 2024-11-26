@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, Box, Chip, Divider } from '@mui/material';
+import { Alert, AlertTitle, Box, Card, Chip, Divider } from '@mui/material';
 import useStations from '../hooks/useStations';
 import useWasteMaterials from '../hooks/useWasteMaterials';
 import WasteMaterialCard from '../components/wasteMaterialsCard';
@@ -66,18 +66,27 @@ function Home() {
                   <WasteMaterialCard
                     wasteMaterial={wasteMaterial}
                     storedVolume={storedMaterial?.volume}
+                    stationId={station.id}
                   />
                 </li>
               );
             })}
           </ul>
-          <Box
-            component="section"
-            className="flex justify-center text-white bg-dark-blue font-bold !text-xl uppercase py-3 my-5"
-          >
-            Total capacity: {station.capacity}
-          </Box>
-          <Station />
+          <Card elevation={0} className='flex w-full justify-evenly items-center'>
+            <Box
+              component="section"
+              className="flex items-center text-white bg-dark-blue font-bold !text-xl uppercase py-3 px-3 my-5"
+            >
+              Total capacity: {station.capacity}kg
+            </Box>
+            <Box
+              component="section"
+              className="flex items-center text-white bg-dark-blue font-bold !text-xl uppercase py-3 px-3 my-5"
+            >
+              Volume used: {station.volume}kg
+            </Box>
+          </Card>
+          <Station station={station}/>
           {stationIndex < stations.length - 1 && (
             <Divider className="py-12">
               <Chip size="medium" />

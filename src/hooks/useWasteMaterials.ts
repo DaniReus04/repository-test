@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import fetchWasteMaterials from '../services/wasteMaterials';
-import { IWasteMaterials } from '../interfaces/wasteMaterials';
+import { IWasteMaterial } from '../interfaces/wasteMaterials';
 
 const useWasteMaterials = () => {
-  const [wasteMaterials, setWasteMaterials] = useState<IWasteMaterials[]>([]);
+  const [wasteMaterials, setWasteMaterials] = useState<IWasteMaterial[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [syncError, setSyncError] = useState<string | null>(null);
 

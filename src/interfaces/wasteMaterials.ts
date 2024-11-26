@@ -5,7 +5,7 @@ export interface IStoredWasteMaterials {
   volume: number;
 }
 
-export interface IWasteMaterials {
+export interface IWasteMaterial {
   id: number;
   name: string;
   phosphorIcon: keyof typeof PhosphorIcons;

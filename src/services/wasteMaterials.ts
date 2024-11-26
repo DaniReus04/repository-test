@@ -1,7 +1,7 @@
-import { IWasteMaterials } from '../interfaces/wasteMaterials';
+import { IWasteMaterial } from '../interfaces/wasteMaterials';
 import mockWasteMaterials from '../mocks/wasteMaterials';
 
-const fetchWasteMaterials = async (): Promise<IWasteMaterials[]> => new Promise((resolve) => {
+const fetchWasteMaterials = async (): Promise<IWasteMaterial[]> => new Promise((resolve) => {
   setTimeout(() => {
     resolve(mockWasteMaterials);
   }, 1000);
