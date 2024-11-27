@@ -38,12 +38,23 @@ function Station({ station }: IStationProps) {
     return (station.volume / station.capacity) * 100;
   }, [station.volume, station.capacity]);
 
+  const handleColor = () => {
+    if (percentage <= 40) {
+      return 'success'
+    } else if (percentage > 40 && percentage < 80) {
+      return 'warning'
+    } else return 'error'
+  }
+
   return (
     <Slider
       aria-label="Always visible"
+      valueLabelDisplay='auto'
+      valueLabelFormat={`${percentage}%`}
       defaultValue={percentage}
-      draggable={false}
+      disableSwap
       marks={marks}
+      color={handleColor()}
     />
   );
 }

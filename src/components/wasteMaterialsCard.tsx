@@ -9,17 +9,18 @@ import { PhosphorIcon } from './phosphorIcon';
 import CardActionArea from '@mui/material/CardActionArea';
 import { useState } from 'react';
 import AddWasteMaterialModal from './addWasteMaterialModal';
+import IStation from '../interfaces/station';
 
 interface IWasteMaterialCardProps {
   wasteMaterial: IWasteMaterial;
   storedVolume: number | undefined;
-  stationId: number;
+  station: IStation;
 }
 
 function WasteMaterialCard({
   wasteMaterial,
   storedVolume,
-  stationId
+  station
 }: IWasteMaterialCardProps) {
   const [openModifyModal, setOpenModifyModal] = useState<boolean>(false);
 
@@ -34,7 +35,7 @@ function WasteMaterialCard({
   return (
     <>
       <Card className="w-full border-none" elevation={0}>
-        <CardActionArea onClick={handleOpenModal}>
+        <CardActionArea onClick={handleOpenModal} disabled={station.hasPendingPickup}>
           <Box className="flex flex-col items-center">
             <Box>
               <PhosphorIcon
@@ -68,7 +69,7 @@ function WasteMaterialCard({
         handleCloseMoodal={handleCloseModal}
         wasteMaterial={wasteMaterial}
         storedVolume={storedVolume}
-        stationId={stationId}
+        station={station}
       />
     </>
   );

@@ -66,7 +66,7 @@ function Home() {
                   <WasteMaterialCard
                     wasteMaterial={wasteMaterial}
                     storedVolume={storedMaterial?.volume}
-                    stationId={station.id}
+                    station={station}
                   />
                 </li>
               );
