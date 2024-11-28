@@ -12,3 +12,11 @@ export interface IPickupRequest {
   storedWasteMaterials: IStoredWasteMaterials[];
   status: EPickupStatus;
 }
+
+export interface IPickupHistory {
+  id: number;
+  stationId: number;
+  collectedAt: number;
+  volume: number;
+  storedWasteMaterials: IStoredWasteMaterials[];
+}

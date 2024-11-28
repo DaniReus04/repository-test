@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
-import fetchPickupRequest from '../services/pickupRequest';
-import { IPickupRequest } from '../interfaces/pickupRequest';
+import { IPickupHistory } from '../interfaces/pickup';
+import fetchPickupHistory from '../services/pickup';
 
-const usePickupRequest = () => {
-  const [pickupRequest, setPickupRequest] = useState<IPickupRequest | null>(null);
+const usePickupHistory = () => {
+  const [pickupHistory, setPickupHistory] = useState<IPickupHistory[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [syncError, setSyncError] = useState<string>('');
 
-  const pickupRequestSync = async () => {
+  const pickupHistorySync = async () => {
     setLoading(true);
     try {
-      const data = await fetchPickupRequest();
-      setPickupRequest(data);
+      const data = await fetchPickupHistory();
+      setPickupHistory(data);
     } catch (error) {
       console.error('Error while fetching the pickup request:', error);
       setSyncError('Error while fetching the pickup request');
@@ -21,15 +21,15 @@ const usePickupRequest = () => {
   };
 
   useEffect(() => {
-    pickupRequestSync();
+    pickupHistorySync();
   }, []);
 
   return {
-    pickupRequest,
+    pickupHistory,
     loading,
     syncError,
-    refresh: pickupRequestSync,
+    refresh: pickupHistorySync,
   };
 };
 
-export default usePickupRequest;
+export default usePickupHistory;
