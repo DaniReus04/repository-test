@@ -9,12 +9,12 @@ import {
 } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import { PhosphorIcon } from './phosphorIcon';
-import { IWasteMaterial } from '../interfaces/wasteMaterials';
+import { IStoredWasteMaterials, IWasteMaterial } from '../interfaces/wasteMaterials';
 import IStation from '../interfaces/station';
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 interface IAddWasteMaterialModalProps {
   openModifyModal: boolean;
@@ -22,6 +22,7 @@ interface IAddWasteMaterialModalProps {
   wasteMaterial: IWasteMaterial;
   storedVolume: number | undefined;
   station: IStation;
+  setWasteMaterialState: Dispatch<SetStateAction<IStoredWasteMaterials | null>>
 }
 
 function AddWasteMaterialModal({
@@ -30,19 +31,18 @@ function AddWasteMaterialModal({
   wasteMaterial,
   storedVolume,
   station,
+  setWasteMaterialState,
 }: IAddWasteMaterialModalProps) {
   const [isModified, setIsModified] = useState(false);
+  const volume = station.storedWasteMaterials ? station.storedWasteMaterials.map((item) => item.volume).reduce((a, b) => a + b, 0) : 0;
 
-  const remainingCapacity = station.capacity - station.volume;
+  const remainingCapacity = station.capacity - volume;
 
   const validationSchema = yup.object().shape({
     weight: yup
       .number()
-      .transform((value) => (isNaN(value) ? undefined : value))
-      .typeError('Must be a number')
       .required('Weight is required')
-      .positive('Weight must be greater than 0')
-      .integer('Weight must be an integer')
+      .min(0)
       .max(
         remainingCapacity,
         `Cannot exceed remaining capacity (${remainingCapacity} kg)`,
@@ -54,23 +54,37 @@ function AddWasteMaterialModal({
     control,
     watch,
     formState: { errors, isValid },
+    reset
   } = useForm<{ weight: number }>({
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
     defaultValues: {
-      weight: storedVolume || 0,
+      weight: storedVolume ? storedVolume : 0,
     },
   });
 
+  useEffect(() => {
+    reset({
+      weight: storedVolume ? storedVolume : 0,
+    });
+  }, [storedVolume, reset]);
+
   const currentWeight = watch('weight');
-  const initialWeight = storedVolume || 0;
+  const initialWeight = storedVolume ? storedVolume : 0;
   useEffect(() => {
     setIsModified(Number(currentWeight) !== initialWeight);
   }, [currentWeight, initialWeight]);
 
   const onSubmit = (data: { weight: number | string }) => {
-    const weightAsNumber = Number(data.weight);
-    console.log('Submitted Weight:', weightAsNumber);
+    setWasteMaterialState({id: wasteMaterial.id, volume: Number(data.weight)});
+    handleCloseMoodal();
+  };
+
+  const handleCustomChange = (value: string, onChange: (value: number) => void) => {
+    const parsedValue = parseFloat(value);
+    if (!Number.isNaN(parsedValue) && parsedValue >= 0) {
+      onChange(parsedValue);
+    }
   };
 
   return (
@@ -104,11 +118,13 @@ function AddWasteMaterialModal({
             <Controller
               name="weight"
               control={control}
-              render={({ field }) => (
+              render={({ field: { onChange, value } }) => (
                 <TextField
-                  {...field}
+                  value={value}
                   label="Weight"
+                  type='number'
                   error={!!errors.weight}
+                  onChange={(e) => handleCustomChange(e.target.value, onChange)}
                   helperText={errors.weight ? errors.weight.message : ''}
                   sx={{ m: 1, width: '25ch' }}
                   InputProps={{
