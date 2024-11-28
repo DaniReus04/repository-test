@@ -6,6 +6,7 @@ const mockStations: IStation[] = [
     capacity: 2400,
     volume: 0,
     hasPendingPickup: false,
+    storedWasteMaterials: [{ id: 7, volume: 520 }],
   },
   {
     id: 2,
