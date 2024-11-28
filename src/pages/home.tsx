@@ -42,15 +42,11 @@ function Home() {
   const {
     wasteMaterials,
     loading: wasteMaterialsLoading,
-    syncError: syncWasteMaterialsError,
-    //refresh: refreshWasteMaterials,
   } = useWasteMaterials();
 
   const {
     pickupHistory,
     loading: pickupHistoryLoading,
-    syncError: syncPickupHistoryError,
-    refresh: refreshPickupHistory,
   } = usePickupHistory();
 
   useEffect(() => {
@@ -73,7 +69,7 @@ function Home() {
         storedWasteMaterials: updatedStation.storedWasteMaterials!,
         volume: updatedStation.volume,
       };
-      setPickupHistoryState([...pickupHistoryState, body]);
+      setPickupHistoryState([body, ...pickupHistoryState]);
 
       updatedStation.hasPendingPickup = false;
       updatedStation.storedWasteMaterials = [];
@@ -92,7 +88,7 @@ function Home() {
     setAlert({ ...alert, open: false });
   };
 
-  if (syncStationError || syncWasteMaterialsError)
+  if (syncStationError)
     return (
       <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <Alert
