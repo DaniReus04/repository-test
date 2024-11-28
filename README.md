@@ -6,16 +6,16 @@ This project has been built using React 18, [Typescript](https://www.typescriptl
 
 In this project, the focus was on enhancing user interaction with their storage stations. Users can store materials in their stations by specifying the quantity. Once the station reaches 80% of its total capacity, a collection request is automatically generated, allowing the user to confirm the collection. Upon confirmation, the station's values are reset to zero, and the collection is added to the history log.
 
-[x] The panel must have at least three waste storage stations.
-[x] The user must inform the percentage of volume that each station is filled with.
-[x] When a station reaches 80% capacity, a collection request should be generated automatically.
-[x] After the collection request, the user can confirm the completion of the station's collection.
-[x] After confirming the collection, the station's occupied volume should be reset to 0%.
+- ✅ The panel must have at least three waste storage stations.
+- ✅ The user must inform the percentage of volume that each station is filled with.
+- ✅ When a station reaches 80% capacity, a collection request should be generated automatically.
+- ✅ After the collection request, the user can confirm the completion of the station's collection.
+- ✅ After confirming the collection, the station's occupied volume should be reset to 0%.
 
 ## Frameworks/Libraries 📖
 
  - React 18 ⚛️
- - Typescript 🇹
+ - Typescript 🆒
  - Tailwindcss 🖌️
  - Material UI 📘
 
