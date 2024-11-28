@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# Waste materials stations ♻️
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project has been built using React 18, [Typescript](https://www.typescriptlang.org/) and [TailwindCSS](https://tailwindcss.com/).
 
-## Available Scripts
+## React test code
 
-In the project directory, you can run:
+In this project, the focus was on enhancing user interaction with their storage stations. Users can store materials in their stations by specifying the quantity. Once the station reaches 80% of its total capacity, a collection request is automatically generated, allowing the user to confirm the collection. Upon confirmation, the station's values are reset to zero, and the collection is added to the history log.
 
-### `yarn start`
+[x] The panel must have at least three waste storage stations.
+[x] The user must inform the percentage of volume that each station is filled with.
+[x] When a station reaches 80% capacity, a collection request should be generated automatically.
+[x] After the collection request, the user can confirm the completion of the station's collection.
+[x] After confirming the collection, the station's occupied volume should be reset to 0%.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Frameworks/Libraries 📖
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ - React 18 ⚛️
+ - Typescript 🇹
+ - Tailwindcss 🖌️
+ - Material UI 📘
 
-### `yarn test`
+## Requirements 🔴
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ - Node version 22.X ✅
+ - Visual Studio Code 🌐
+ - NPM version 10.X 🟥
 
-### `yarn build`
+### Visual Studio Code Extensions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ - Tailwind CSS Intellisense ✍️
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Starting Project 🧑‍💻
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installing Packages ⬇️
 
-### `yarn eject`
+Run `yarn` or `npm i` to install the dependencies packages.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Running TailwindCSS ✏️
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+As the project uses tailwind as main css, before starting the project you have to run `yarn run tailwind:watch` or `npm run tailwind:watch` deepending on which one you are working, to build and watch the CSS changes.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Running The Project 🏁
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+After starting the tailwind you have to create a new terminal to start the project by running the command `yarn start` or `npm start`.
 
-## Learn More
+## Diagram 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Waste system stations diagram](diagrams/Diagrama.png)
