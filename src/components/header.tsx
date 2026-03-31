@@ -8,6 +8,11 @@ function Header() {
     <AppBar position="sticky" elevation={0} className="!bg-light-blue">
       <Wrapper>
         <Toolbar disableGutters className="gap-6">
+          <img
+            src="https://cdn.b2blue.com/p/static/img/B2Blue_Logo_borda_branca.png"
+            alt="b2blue-logo"
+            className="h-16"
+          />
           <Typography
             component="div"
             className="text-sm text-white"
