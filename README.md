@@ -14,20 +14,20 @@ In this project, the focus was on enhancing user interaction with their storage 
 
 ## Frameworks/Libraries 📖
 
- - React 18 ⚛️
- - Typescript 🆒
- - Tailwindcss 🖌️
- - Material UI 📘
+- React 18 ⚛️
+- Typescript 🆒
+- Tailwindcss 🖌️
+- Material UI 📘
 
 ## Requirements 🔴
 
- - Node version 22.X ✅
- - Visual Studio Code 🌐
- - NPM version 10.X 🟥
+- Node version 24.X ✅
+- Visual Studio Code 🌐
+- NPM version 10.X 🟥
 
 ### Visual Studio Code Extensions
 
- - Tailwind CSS Intellisense ✍️
+- Tailwind CSS Intellisense ✍️
 
 ## Starting Project 🧑‍💻
 
@@ -43,6 +43,6 @@ As the project uses tailwind as main css, before starting the project you have t
 
 After starting the tailwind you have to create a new terminal to start the project by running the command `yarn start` or `npm start`.
 
-## Diagram 
+## Diagram
 
 ![Waste system stations diagram](diagrams/Diagrama.png)
