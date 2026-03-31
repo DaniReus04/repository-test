@@ -4,7 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import IsoIcon from '@mui/icons-material/Iso';
-import { IStoredWasteMaterials, IWasteMaterial } from '../interfaces/wasteMaterials';
+import {
+  IStoredWasteMaterials,
+  IWasteMaterial,
+} from '../interfaces/wasteMaterials';
 import { PhosphorIcon } from './phosphorIcon';
 import CardActionArea from '@mui/material/CardActionArea';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
@@ -16,8 +19,8 @@ interface IWasteMaterialCardProps {
   storedVolume: number | undefined;
   station: IStation;
   stationsState: IStation[];
-  setStationsState: Dispatch<SetStateAction<IStation[]>>
-};
+  setStationsState: Dispatch<SetStateAction<IStation[]>>;
+}
 
 function WasteMaterialCard({
   wasteMaterial,
@@ -27,47 +30,54 @@ function WasteMaterialCard({
   setStationsState,
 }: IWasteMaterialCardProps) {
   const [openModifyModal, setOpenModifyModal] = useState<boolean>(false);
-  const [wasteMaterialVolume, setWasteMaterialVolume] = useState<IStoredWasteMaterials | null>(null);
+  const [wasteMaterialVolume, setWasteMaterialVolume] =
+    useState<IStoredWasteMaterials | null>(null);
 
   useEffect(() => {
     if (wasteMaterialVolume) {
-      const updatedStations = [...stationsState];
-  
-      const stationIndex = updatedStations.findIndex((s) => s.id === station.id);
-      if (stationIndex !== -1) {
-        const updatedStation = { ...updatedStations[stationIndex] };
-  
-        if (!updatedStation.storedWasteMaterials) {
-          updatedStation.storedWasteMaterials = [];
-        }
-  
-        const materialIndex = updatedStation.storedWasteMaterials.findIndex(
-          (material) => material.id === wasteMaterialVolume.id
+      setStationsState((prevStations) => {
+        const updatedStations = [...prevStations];
+
+        const stationIndex = updatedStations.findIndex(
+          (s) => s.id === station.id,
         );
-  
-        if (materialIndex !== -1) {
-          updatedStation.storedWasteMaterials[materialIndex].volume = wasteMaterialVolume.volume;
-        } else {
-          updatedStation.storedWasteMaterials.push(wasteMaterialVolume);
+        if (stationIndex !== -1) {
+          const updatedStation = { ...updatedStations[stationIndex] };
+
+          if (!updatedStation.storedWasteMaterials) {
+            updatedStation.storedWasteMaterials = [];
+          }
+
+          const materialIndex = updatedStation.storedWasteMaterials.findIndex(
+            (material) => material.id === wasteMaterialVolume.id,
+          );
+
+          if (materialIndex !== -1) {
+            updatedStation.storedWasteMaterials[materialIndex].volume =
+              wasteMaterialVolume.volume;
+          } else {
+            updatedStation.storedWasteMaterials.push(wasteMaterialVolume);
+          }
+
+          const totalVolumeUsed = updatedStation.storedWasteMaterials.reduce(
+            (acc, material) => acc + material.volume,
+            0,
+          );
+          updatedStation.volume = totalVolumeUsed;
+
+          if (totalVolumeUsed >= 0.8 * updatedStation.capacity) {
+            updatedStation.hasPendingPickup = true;
+          } else {
+            updatedStation.hasPendingPickup = false;
+          }
+
+          updatedStations[stationIndex] = updatedStation;
         }
 
-        const totalVolumeUsed = updatedStation.storedWasteMaterials.reduce(
-          (acc, material) => acc + material.volume,
-          0
-        );
-        updatedStation.volume = totalVolumeUsed;
-  
-        if (totalVolumeUsed >= 0.8 * updatedStation.capacity) {
-          updatedStation.hasPendingPickup = true;
-        } else {
-          updatedStation.hasPendingPickup = false;
-        }
-  
-        updatedStations[stationIndex] = updatedStation;
-        setStationsState(updatedStations);
-      }
+        return updatedStations;
+      });
     }
-  }, [wasteMaterialVolume]);
+  }, [wasteMaterialVolume, station.id, setStationsState]);
 
   const handleCloseModal = () => {
     setOpenModifyModal(false);
@@ -80,7 +90,10 @@ function WasteMaterialCard({
   return (
     <>
       <Card className="w-full border-none" elevation={0}>
-        <CardActionArea onClick={handleOpenModal} disabled={station.hasPendingPickup}>
+        <CardActionArea
+          onClick={handleOpenModal}
+          disabled={station.hasPendingPickup}
+        >
           <Box className="flex flex-col items-center">
             <Box>
               <PhosphorIcon
@@ -99,7 +112,10 @@ function WasteMaterialCard({
               </Typography>
             </CardContent>
             <Box className="flex items-center w-full justify-center">
-              <Typography component="div" className="flex gap-px text-sm whitespace-nowrap">
+              <Typography
+                component="div"
+                className="flex gap-px text-sm whitespace-nowrap"
+              >
                 {storedVolume ? storedVolume : 0}KG
               </Typography>
               <IconButton>
