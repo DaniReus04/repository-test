@@ -12,10 +12,6 @@ In this project, the focus was on enhancing user interaction with their storage 
 - ✅ After the collection request, the user can confirm the completion of the station's collection.
 - ✅ After confirming the collection, the station's occupied volume should be reset to 0%.
 
-## Preview 🛜
-
-[Stations Page](https://repository-test-two.vercel.app)
-
 ## Frameworks/Libraries 📖
 
  - React 18 ⚛️
